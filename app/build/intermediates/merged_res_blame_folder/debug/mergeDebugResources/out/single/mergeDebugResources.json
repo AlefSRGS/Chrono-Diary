@@ -36,6 +36,10 @@
         "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-debug-4:\\drawable-nodpi_visibility_on.jpeg.flat",
+        "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\drawable-nodpi\\visibility_on.jpeg"
+    },
+    {
         "merged": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-debug-4:\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\mipmap-mdpi\\ic_launcher.webp"
     },
@@ -96,12 +100,20 @@
         "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-debug-4:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "com.example.chrono_diary.app-debug-4:/drawable-nodpi_visibility_on.png.flat",
+        "source": "com.example.chrono_diary.app-main-6:/drawable-nodpi/visibility_on.png"
+    },
+    {
+        "merged": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-debug-4:\\drawable-nodpi_visibility_off.jpeg.flat",
+        "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\drawable-nodpi\\visibility_off.jpeg"
     },
     {
         "merged": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-debug-4:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-debug-4:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-main-6:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\samue\\.gradle\\daemon\\8.10\\com.example.chrono_diary.app-debug-4:\\mipmap-xxhdpi_ic_launcher.webp.flat",

@@ -16,7 +16,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.material.ButtonDefaults
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +44,7 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(190.dp)
+                    .height(220.dp)
                     .padding(bottom = 32.dp)
             )
             Card(
@@ -130,14 +137,14 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                 }
             }
             Spacer(modifier = Modifier.height(48.dp))
-            Image(
-                painter = painterResource(R.drawable.button),
-                contentDescription = "Button Entrar",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(55.dp)
-                    .clickable { onSignInClick }
-            )
+            Button(
+                onClick = { },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF4B7195)),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier.padding(16.dp).width(200.dp)
+            ){
+                Text("Entrar",color = Color.White)
+            }
             Spacer(modifier = Modifier.height(32.dp))
             Image(
                 painter = painterResource(R.drawable.n_o_tem_uma_conta_inscreva_se_no_chronodiary_),

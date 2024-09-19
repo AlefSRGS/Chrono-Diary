@@ -47,7 +47,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out" />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/debug">
-      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/res/resValues/debug" type="java-resource" generated="true" />
     </content>
     <content url="file://$MODULE_DIR$/../../../app/src/debug" />
     <content url="file://$MODULE_DIR$/../../../app/src/main">
@@ -98,6 +98,7 @@
     <orderEntry type="library" name="Gradle: androidx.compose.material3:material3-android:1.2.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.compose.foundation:foundation-android:1.6.6@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.compose.material:material-ripple-android:1.6.6@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.compose.material:material-android:1.6.6@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.9.0" level="project" />

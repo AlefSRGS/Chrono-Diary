@@ -75,7 +75,6 @@ int dimen notification_subtext_size 0x7f030013
 int dimen notification_top_pad 0x7f030014
 int dimen notification_top_pad_large_text 0x7f030015
 int drawable button 0x7f040001
-int drawable chronodiary 0x7f040002
 int drawable ic_call_answer 0x7f040003
 int drawable ic_call_answer_low 0x7f040004
 int drawable ic_call_answer_video 0x7f040005
@@ -84,8 +83,6 @@ int drawable ic_call_decline 0x7f040007
 int drawable ic_call_decline_low 0x7f040008
 int drawable ic_launcher_background 0x7f040009
 int drawable ic_launcher_foreground 0x7f04000a
-int drawable icon 0x7f04000b
-int drawable logo_chrono3 0x7f04000c
 int drawable logo_chrono4 0x7f04000d
 int drawable n_o_tem_uma_conta_inscreva_se_no_chronodiary_ 0x7f04000e
 int drawable notification_action_background 0x7f04000f
@@ -101,8 +98,6 @@ int drawable notification_template_icon_bg 0x7f040018
 int drawable notification_template_icon_low_bg 0x7f040019
 int drawable notification_tile_bg 0x7f04001a
 int drawable notify_panel_notification_icon_bg 0x7f04001b
-int drawable rectangle_4 0x7f04001c
-int drawable rectangle_6 0x7f04001d
 int drawable text_link 0x7f04001e
 int drawable visibility_off 0x7f04001f
 int drawable visibility_on 0x7f040020
