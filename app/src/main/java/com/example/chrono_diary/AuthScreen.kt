@@ -12,6 +12,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -44,10 +46,10 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                     .height(300.dp)
                     .padding(2.dp)
                     .border(
-                    width = 2.dp,
-                    color = Color(0xFF6899EB),
-                    shape = RoundedCornerShape(8.dp),
-                ),
+                        width = 2.dp,
+                        color = Color(0xFF6899EB),
+                        shape = RoundedCornerShape(8.dp),
+                    ),
                 elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.Transparent)
@@ -79,7 +81,13 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
+                      var password_visibility by remember{ mutableStateOf(false) }
 
+                      val icon = if(password_visibility){
+                          painterResource(id = R.drawable.visibility_on)
+                      }else{
+                          painterResource(id = R.drawable.visibility_off)
+                      }
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
@@ -95,7 +103,21 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                             focusedBorderColor = Color(0xFF6899EB),
                             unfocusedLabelColor = Color(0xFF4B7195),
                             focusedLabelColor = Color(0xFF6899EB)
-                        )
+
+                        ),
+                        trailingIcon = {
+                            IconButton(onClick = {
+                                password_visibility = !password_visibility
+                            }){
+                                Icon(
+                                    painter = icon ,
+                                    contentDescription = "Visibility Icon"
+                                )
+                            }
+                        },
+                        visualTransformation = if (password_visibility) VisualTransformation.None
+                        else PasswordVisualTransformation()
+
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Image(
@@ -129,3 +151,4 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
             )
         }
 }
+

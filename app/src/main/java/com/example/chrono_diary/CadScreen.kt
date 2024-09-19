@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import java.util.*
@@ -164,10 +166,17 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        var password_visibility by remember{ mutableStateOf(false) }
+
+        val icon = if(password_visibility){
+            painterResource(id = R.drawable.visibility_on)
+        }else{
+            painterResource(id = R.drawable.visibility_off)
+        }
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password") },
+            label = { Text("Senha") },
             modifier = Modifier
                 .width(320.dp)
                 .padding(4.dp)
@@ -179,10 +188,32 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                 focusedBorderColor = Color(0xFF6899EB),
                 unfocusedLabelColor = Color(0xFF4B7195),
                 focusedLabelColor = Color(0xFF6899EB)
-            )
+
+            ),
+            trailingIcon = {
+                IconButton(onClick = {
+                    password_visibility = !password_visibility
+                }){
+                    Icon(
+                        painter = icon ,
+                        contentDescription = "Visibility Icon"
+                    )
+                }
+            },
+            visualTransformation = if (password_visibility) VisualTransformation.None
+            else PasswordVisualTransformation()
+
         )
 
         Spacer(modifier = Modifier.height(8.dp))
+
+        var confirm_password_visibility by remember{ mutableStateOf(false) }
+
+        val confirm_icon = if(confirm_password_visibility){
+            painterResource(id = R.drawable.visibility_on)
+        }else{
+            painterResource(id = R.drawable.visibility_off)
+        }
 
         OutlinedTextField(
             value = confirmpassword,
@@ -199,7 +230,20 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                 focusedBorderColor = Color(0xFF6899EB),
                 unfocusedLabelColor = Color(0xFF4B7195),
                 focusedLabelColor = Color(0xFF6899EB)
-            )
+            ),
+            trailingIcon = {
+                IconButton(onClick = {
+                    confirm_password_visibility = !confirm_password_visibility
+                }){
+                    Icon(
+                        painter = confirm_icon ,
+                        contentDescription = "Visibility Icon"
+                    )
+                }
+            },
+            visualTransformation = if (confirm_password_visibility) VisualTransformation.None
+            else PasswordVisualTransformation()
+
         )
 
         Spacer(modifier = Modifier.height(8.dp))

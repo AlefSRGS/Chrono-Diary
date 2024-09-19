@@ -18,6 +18,8 @@ drawable n_o_tem_uma_conta_inscreva_se_no_chronodiary_
 drawable rectangle_4
 drawable rectangle_6
 drawable text_link
+drawable visibility_off
+drawable visibility_on
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
