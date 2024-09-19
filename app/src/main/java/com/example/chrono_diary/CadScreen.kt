@@ -80,7 +80,7 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
-            label = { Text("Username") },
+            label = { Text("Nome de Usuário") },
             modifier = Modifier
                 .width(320.dp)
                 .padding(4.dp)
@@ -218,7 +218,7 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
         OutlinedTextField(
             value = confirmpassword,
             onValueChange = { confirmpassword = it },
-            label = { Text("Confirm Password") },
+            label = { Text("Confirmar Senha") },
             modifier = Modifier
                 .width(320.dp)
                 .padding(4.dp)

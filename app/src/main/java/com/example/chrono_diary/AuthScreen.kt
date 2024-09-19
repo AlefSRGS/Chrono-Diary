@@ -65,7 +65,7 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                     OutlinedTextField(
                         value = username,
                         onValueChange = { username = it },
-                        label = { Text("Email ou nome de usuário") },
+                        label = { Text("Nome de Usuário") },
                         modifier = Modifier
                             .width(320.dp)
                             .padding(4.dp)
