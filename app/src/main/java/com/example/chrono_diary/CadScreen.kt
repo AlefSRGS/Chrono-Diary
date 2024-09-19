@@ -30,7 +30,7 @@ import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
+fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
     var completename by remember { mutableStateOf("") }
     var username by remember{ mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -46,11 +46,11 @@ fun CadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
             .padding(16.dp)
     ) {
         Image(
-            painter = painterResource(R.drawable.logo_chrono),
+            painter = painterResource(R.drawable.logo_chrono4),
             contentDescription = "App Logo",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(180.dp)
+                .height(190.dp)
                 .padding(bottom = 32.dp)
         )
 

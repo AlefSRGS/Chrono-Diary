@@ -13,11 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
+fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navController: NavController) {
             var username by remember{ mutableStateOf("") }
             var password by remember{ mutableStateOf("") }
 
@@ -28,20 +29,13 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+
             Image(
-                painter = painterResource(R.drawable.icon),
-                contentDescription = "App Logo",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(180.dp)
-                    .padding(bottom = 32.dp)
-            )
-            Image(
-                painter = painterResource(R.drawable.chronodiary),
+                painter = painterResource(R.drawable.logo_chrono4),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
+                    .height(190.dp)
                     .padding(bottom = 32.dp)
             )
             Card(
@@ -78,7 +72,9 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             containerColor = Color.White,
                             unfocusedBorderColor = Color(0xFF6899EB),
-                            focusedBorderColor = Color(0xFF6899EB)
+                            focusedBorderColor = Color(0xFF6899EB),
+                            unfocusedLabelColor = Color(0xFF4B7195),
+                            focusedLabelColor = Color(0xFF6899EB)
                         )
                     )
 
@@ -96,7 +92,9 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                         colors = TextFieldDefaults.outlinedTextFieldColors(
                             containerColor = Color.White,
                             unfocusedBorderColor = Color(0xFF6899EB),
-                            focusedBorderColor = Color(0xFF6899EB)
+                            focusedBorderColor = Color(0xFF6899EB),
+                            unfocusedLabelColor = Color(0xFF4B7195),
+                            focusedLabelColor = Color(0xFF6899EB)
                         )
                     )
                     Spacer(modifier = Modifier.height(8.dp))
@@ -125,7 +123,9 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(40.dp)
-                    .clickable {}
+                    .clickable {
+                        navController.navigate("cadScreen")
+                    }
             )
         }
 }
