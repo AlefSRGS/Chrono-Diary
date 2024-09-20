@@ -1,5 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+color azul
 color black
 color purple_200
 color purple_500
@@ -18,6 +19,8 @@ drawable visibility_on
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
+style CustomDatePickerDialog
 style Theme.ChronoDiary
+style Theme.YourApp
 xml backup_rules
 xml data_extraction_rules
