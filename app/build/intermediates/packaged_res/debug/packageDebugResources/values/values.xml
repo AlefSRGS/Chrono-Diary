@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="azul">#FF6899EB</color>
     <color name="black">#FF000000</color>
     <color name="ic_launcher_background">#FDFDFD</color>
     <color name="purple_200">#FFBB86FC</color>
@@ -9,5 +10,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Chrono-Diary</string>
+    <style name="CustomDatePickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">@color/azul</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
     <style name="Theme.ChronoDiary" parent="android:Theme.Material.Light.NoActionBar"/>
+    <style name="Theme.YourApp" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:datePickerDialogTheme">@style/CustomDatePickerDialog</item>
+    </style>
 </resources>

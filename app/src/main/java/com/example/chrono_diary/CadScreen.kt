@@ -107,6 +107,7 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
         // DatePickerDialog
         val datePickerDialog = DatePickerDialog(
             context,
+            R.style.CustomDatePickerDialog,
             { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
                 selectedDate.value = "$dayOfMonth/${month + 1}/$year"
             },
