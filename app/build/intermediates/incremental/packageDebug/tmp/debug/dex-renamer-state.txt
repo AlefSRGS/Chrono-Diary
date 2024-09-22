@@ -1,4 +1,4 @@
-#Thu Sep 19 16:51:32 BRT 2024
+#Sun Sep 22 11:22:42 BRT 2024
 base.0=C\:\\Chrono-Diary\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Chrono-Diary\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Chrono-Diary\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
