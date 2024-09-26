@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#Sun Sep 22 11:22:42 BRT 2024
-=======
-#Fri Sep 20 09:58:06 BRT 2024
->>>>>>> 0b13c76b31163292e9c34510308fc1e55dd585aa
+#Thu Sep 26 01:17:46 BRT 2024
 base.0=C\:\\Chrono-Diary\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Chrono-Diary\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Chrono-Diary\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex

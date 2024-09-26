@@ -26,9 +26,9 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController,"AuthScreen"){
-                        composable("AuthScreen") {
-                            authScreen(
+                    NavHost(navController,"HomeScreen"){
+                        composable("HomeScreen") {
+                            HomeScreen(
                                 onSignInClick = { user ->
                                     navController.navigate("UserScreen/${user}")
                                 },
@@ -38,13 +38,11 @@ class MainActivity : ComponentActivity() {
                                 navController = navController
                             )
                         }
-                        composable("CadScreen") {
-                            cadScreen(
-                                onSignInClick = { },
-                                onSignUpClick = { }
-                            )
-                        }
+
                     }
+
+
+
                 }
             }
         }

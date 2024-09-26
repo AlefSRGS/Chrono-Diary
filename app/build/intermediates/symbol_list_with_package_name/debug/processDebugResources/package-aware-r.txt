@@ -1308,9 +1308,6 @@ color button_material_dark
 color button_material_light
 color call_notification_answer_color
 color call_notification_decline_color
-<<<<<<< HEAD
-color ic_launcher_background
-=======
 color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
@@ -1363,6 +1360,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color m3_appbar_overlay_color
 color m3_assist_chip_icon_tint_color
 color m3_assist_chip_stroke_color
@@ -2017,7 +2015,6 @@ color mtrl_textinput_disabled_color
 color mtrl_textinput_filled_box_default_background_color
 color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
->>>>>>> 0b13c76b31163292e9c34510308fc1e55dd585aa
 color notification_action_color_filter
 color notification_icon_bg_color
 color primary_dark_material_dark

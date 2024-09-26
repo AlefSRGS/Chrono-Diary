@@ -4,9 +4,6 @@
             "outputFile": "com.example.chrono_diary.app-mergeDebugResources-2:/values-v18/values-v18.xml",
             "map": [
                 {
-<<<<<<< HEAD
-                    "source": "C:\\Users\\desaf\\.gradle\\caches\\8.10\\transforms\\b6f90345fcada307876af5a0d417ef3b\\transformed\\core-1.5.0\\res\\values-v18\\values.xml",
-=======
                     "source": "C:\\Users\\samue\\.gradle\\caches\\8.10\\transforms\\b593ab3b0fd82a0ae69a7c18f9ecded4\\transformed\\appcompat-1.6.1\\res\\values-v18\\values-v18.xml",
                     "from": {
                         "startLines": "2",
@@ -18,7 +15,6 @@
                 },
                 {
                     "source": "C:\\Users\\samue\\.gradle\\caches\\8.10\\transforms\\f29e398b6f01e56e4fad2224bcdd7438\\transformed\\core-1.5.0\\res\\values-v18\\values.xml",
->>>>>>> 0b13c76b31163292e9c34510308fc1e55dd585aa
                     "from": {
                         "startLines": "4,12",
                         "startColumns": "0,0",
