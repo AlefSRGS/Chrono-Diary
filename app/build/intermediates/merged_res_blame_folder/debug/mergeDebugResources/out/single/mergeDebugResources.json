@@ -12,6 +12,10 @@
         "source": "com.example.chrono_diary.app-main-6:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
+        "merged": "com.example.chrono_diary.app-debug-4:/drawable-nodpi_conta_icon.png.flat",
+        "source": "com.example.chrono_diary.app-main-6:/drawable-nodpi/conta_icon.png"
+    },
+    {
         "merged": "com.example.chrono_diary.app-debug-4:/mipmap-mdpi_ic_launcher.webp.flat",
         "source": "com.example.chrono_diary.app-main-6:/mipmap-mdpi/ic_launcher.webp"
     },

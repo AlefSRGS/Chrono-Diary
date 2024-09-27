@@ -1,4 +1,4 @@
-package com.example.loginapp
+package com.example.chrono_diary
 
 data class User (
     val username: String,
