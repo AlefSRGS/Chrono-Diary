@@ -4,6 +4,10 @@
         "source": "com.example.chrono_diary.app-main-6:/xml/backup_rules.xml"
     },
     {
+        "merged": "com.example.chrono_diary.app-debug-4:/drawable-nodpi_plus_icon.png.flat",
+        "source": "com.example.chrono_diary.app-main-6:/drawable-nodpi/plus_icon.png"
+    },
+    {
         "merged": "com.example.chrono_diary.app-debug-4:/drawable-nodpi_text_link.png.flat",
         "source": "com.example.chrono_diary.app-main-6:/drawable-nodpi/text_link.png"
     },

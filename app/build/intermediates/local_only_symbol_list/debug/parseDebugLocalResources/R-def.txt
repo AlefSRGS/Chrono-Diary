@@ -15,6 +15,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable logo_chrono4
 drawable n_o_tem_uma_conta_inscreva_se_no_chronodiary_
+drawable plus_icon
 drawable text_link
 drawable visibility_off
 drawable visibility_on

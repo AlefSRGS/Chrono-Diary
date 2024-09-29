@@ -10,7 +10,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.Surface
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,12 +19,20 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import androidx.compose.material3.Icon
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.Button
+import androidx.compose.runtime.*
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.material3.*
 
 
 
@@ -33,7 +40,7 @@ import androidx.compose.ui.graphics.Color
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navController: NavController) {
-     var task_name by remember { mutableStateOf("") }
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFF6899EB)
@@ -59,51 +66,28 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                     text = "Ola , nome do usuario",
                     color = Color.White,
                     fontSize = 23.sp,
+
                 )
             }
+
+
        Column(
            horizontalAlignment = Alignment.CenterHorizontally,
            verticalArrangement = Arrangement.Top,
            modifier = Modifier
                .fillMaxHeight()
                .fillMaxWidth()
-               .padding(top = 10.dp)
+               .padding(top = 17.dp)
                .clip(RoundedCornerShape(16.dp))
                .background(Color.White)
                .border(2.dp, Color.White, RoundedCornerShape(16.dp))
 
        ) {
 
-           Row{
-
-               OutlinedTextField(
-                   value = task_name,
-                   onValueChange = { task_name = it },
-                   label = { Text("Nome Completo") },
-                   modifier = Modifier
-                       .width(320.dp)
-                       .padding(4.dp)
-                       .height(65.dp),
-                   shape = RoundedCornerShape(8.dp),
-                   colors = TextFieldDefaults.outlinedTextFieldColors(
-                       containerColor = Color.White,
-                       unfocusedBorderColor = Color(0xFF6899EB),
-                       focusedBorderColor = Color(0xFF6899EB),
-                       unfocusedLabelColor = Color(0xFF4B7195),
-                       focusedLabelColor = Color(0xFF6899EB)
-                   )
-               )
-
-           }
-
-
-
-
-
            LazyRow(
                modifier = Modifier
                    .fillMaxWidth()
-                   .padding(12.dp),
+                   .padding(top = 17.dp, start = 3.dp, end = 3.dp),
                verticalAlignment = Alignment.CenterVertically
 
            ){
@@ -235,13 +219,71 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                }
 
 
-
-
           }
            
          }
 
       }
-    }}
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ){
+            val openAlertDialog = remember{ mutableStateOf(false) }
+
+            FloatingActionButton(modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.BottomEnd),
+                containerColor = Color(0xFF6899EB),
+                onClick = {openAlertDialog.value = true }
+            ) {
+
+                Image(painter = painterResource(id = R.drawable.plus_icon) , contentDescription = null )
+
+            }
+
+            if(openAlertDialog.value){
+
+                AlertDialog(
+                    onDismissRequest = { openAlertDialog.value = false },
+                    confirmButton = {
+                        Button(onClick = { openAlertDialog.value = false }, modifier = Modifier.background(Color(0xFF4B7195))) {
+                            Text("Criar")
+                        }
+                    },
+                    dismissButton = {
+                        Button(onClick = { openAlertDialog.value = false } , modifier = Modifier.background(Color(0xFF4B7195))) {
+                            Text("Cancelar")
+                        }
+                    },
+                    title = {
+                        Text(text = "Nova Task")
+                    },
+                    text = { // criar uma função com o conteudo de dentro do alert dialog
+                        Text("Este é o conteúdo do alerta.")
+                    },
+
+                    properties = DialogProperties(dismissOnClickOutside = true) // Opcional, fecha ao clicar fora
+                )
+            }
+
+            }
+        }
+    }
+
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewHomeScreen() {
+    val navController = rememberNavController()
+    HomeScreen(
+        onSignInClick = { },
+        onSignUpClick = {  },
+        navController = navController
+    )
+}
+
+
+
 
 
