@@ -7,6 +7,6 @@ data class User(
     val completeName: String,
     var password: String,
     var email: String,
-    val birthDate: LocalDate,
+    val birthDate: String,
     var taskList: MutableList<UserTask> = mutableListOf()
 )
