@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import com.example.chrono_diary.R
 import com.example.loginapp.ui.theme.ProfileScreenTheme
 
-
 // Classe User
 data class User(val username: String, val password: String)
 
@@ -92,36 +91,34 @@ fun LoginScreen(user: User) {
                 style = MaterialTheme.typography.bodyMedium,
                 color = Color.Gray
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(80.dp))
 
-            // Blocos para tasks
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween // Espaço entre os blocos
+            // Coluna com os blocos um embaixo do outro
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally // Centraliza os blocos horizontalmente
             ) {
                 // Primeiro bloco (nome do usuário)
                 Box(
                     modifier = Modifier
-                        .weight(1f) // Divide a largura igualmente entre os blocos
-                        .height(100.dp) // Altura do bloco
+                        .fillMaxWidth(0.7f)  // Largura ajustada
+                        .height(100.dp)  // Altura do bloco
                         .border(2.dp, Color(0xFF6899EB), shape = RectangleShape) // Borda azul
                         .padding(16.dp) // Padding dentro do bloco
                 ) {
-                    Text(text = "Nome do Usuário: ${user.username}", color = Color.Gray)
+                    Text(text = "Tasks Concluídas", color = Color.Gray)
                 }
-
-                Spacer(modifier = Modifier.width(16.dp)) // Espaço entre os dois blocos
+                Spacer(modifier = Modifier.height(80.dp)) // Espaço entre os dois blocos
 
                 // Segundo bloco
                 Box(
                     modifier = Modifier
-                        .weight(1f)
+                        .fillMaxWidth(0.7f)  // Largura ajustada
                         .height(100.dp)
                         .border(2.dp, Color(0xFF6899EB), shape = RectangleShape)
                         .padding(16.dp)
                 ) {
-                    Text(text = "Tasks Concluídas", color = Color.Gray)
+                    Text(text = "Tasks Restantes", color = Color.Gray)
                 }
             }
         }
