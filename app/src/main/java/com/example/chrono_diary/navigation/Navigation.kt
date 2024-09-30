@@ -14,7 +14,7 @@ fun SetupNavGraph(
     userViewModel: UserViewModel
 ) {
     NavHost(navController, startDestination = "AuthScreen") {
-        composable("loginScreen") {
+        composable("AuthScreen") {
             authScreen(
                 userViewModel = userViewModel,
                 onNavigateToCad = { navController.navigate("CadScreen") }

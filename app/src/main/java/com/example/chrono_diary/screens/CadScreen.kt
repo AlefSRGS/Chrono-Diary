@@ -89,8 +89,6 @@ fun cadScreen(userViewModel: UserViewModel, onNavigateToLogin: () -> Unit) {
                 focusedBorderColor = Color(0xFF6899EB),
                 unfocusedLabelColor = Color(0xFF4B7195),
                 focusedLabelColor = Color(0xFF6899EB)
-
-
             )
         )
 
@@ -98,25 +96,26 @@ fun cadScreen(userViewModel: UserViewModel, onNavigateToLogin: () -> Unit) {
 
 
         val context = LocalContext.current
-        var selectedDate = remember { mutableStateOf("") }
         val calendar = Calendar.getInstance()
 
-        val datePickerDialog = DatePickerDialog(
-            context,
-            R.style.CustomDatePickerDialog,
-            { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                selectedDate.value = "$dayOfMonth/${month + 1}/$year"
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
+        val datePickerDialog = remember {
+            DatePickerDialog(
+                context,
+                R.style.CustomDatePickerDialog,
+                { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                    selectedDate = "$dayOfMonth/${month + 1}/$year"
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+        }
 
 
 
         OutlinedTextField(
-            value = selectedDate.value,
-            onValueChange = { },
+            value = selectedDate,
+            onValueChange = {},
             label = { Text("Data de Nascimento") },
             readOnly = true,
             modifier = Modifier
@@ -132,9 +131,7 @@ fun cadScreen(userViewModel: UserViewModel, onNavigateToLogin: () -> Unit) {
                 focusedBorderColor = Color(0xFF6899EB),
                 unfocusedLabelColor = Color(0xFF4B7195),
                 focusedLabelColor = Color(0xFF6899EB)
-
             )
-
         )
 
 

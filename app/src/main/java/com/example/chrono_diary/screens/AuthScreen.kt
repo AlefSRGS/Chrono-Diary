@@ -143,6 +143,9 @@ fun authScreen(userViewModel: UserViewModel, onNavigateToCad: () -> Unit) {
                         val userFounded = userViewModel.testMatchUser(username, password)
                         if(userFounded != null){
                             //ir para pagina home
+                            println("Login deu certo")
+                            println(userFounded.username)
+                            println(userFounded.birthDate)
                         }
                         //pop-up username ou password incorreto
                     }
