@@ -129,7 +129,7 @@ fun LoginScreen(user: User) {
 @Composable
 fun PreviewLoginScreen() {
     // User para a visualização
-    val user = User(username = "Nome do Usuário", password = "Senha Exemplo")
+    val user = User(username = "Usuário Exemplo", password = "Senha Exemplo")
 
     ProfileScreenTheme {
         LoginScreen(user = user)
