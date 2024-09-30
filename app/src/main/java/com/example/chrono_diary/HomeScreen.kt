@@ -196,7 +196,7 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                                 .padding(0.dp),
 
                             ){
-                            Text(text = "SaÃºde" , color = Color(0xFF4B7195))
+                            Text(text = "Saúde" , color = Color(0xFF4B7195))
                         }
 
                         Spacer(modifier = Modifier.width(8.dp))
@@ -219,14 +219,41 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                             ){
                             Text(text = "Qualquer" , color = Color(0xFF4B7195) , fontSize = 10.5.sp)
                         }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Button(
+                            onClick = { },
+                            colors = ButtonDefaults.buttonColors( Color(0xFF6899EB)),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier
+                                .padding(2.5.dp)
+                                .width(90.dp)
+                                .height(32.dp)
+                                .border(
+                                    width = 1.dp,
+                                    color = Color(0xFF4B7195),
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                                .padding(0.dp),
+
+                            ){
+                            Text(text = "Concluidas" , color = Color(0xFF4B7195), fontSize = 9.sp)
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+
                     }
 
 
                 }
 
+                //lazyColumn
+
             }
 
-        }
+        } // tela de criação de task
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -385,6 +412,7 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                                 val initialMinute_two = calendar_two.get(Calendar.MINUTE)
 
                                 // DatePickerDialog
+
                                 val datePickerDialog_two = DatePickerDialog(
                                     context_two,
                                     R.style.CustomDatePickerDialog,
@@ -436,8 +464,43 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
 
 
                             }
+                            val list = listOf("Trabalho","Pessoal","Faculdade","Qualquer","Saúde")
+                            var selectedText by remember {mutableStateOf(list[0])}
+                            var isExpanded by remember{ mutableStateOf(false) }
 
+                            ExposedDropdownMenuBox(
+                                expanded = isExpanded ,
+                                onExpandedChange = {isExpanded = !isExpanded}
+                            ) {
 
+                                OutlinedTextField(
+                                    value =selectedText ,
+                                    label = {Text(text = ("Catergoria"))},
+                                    onValueChange = {},
+                                    readOnly = true,
+                                    modifier = Modifier.menuAnchor(),
+                                    trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(
+                                        expanded = isExpanded
+                                    )})
+
+                                ExposedDropdownMenu(
+                                    expanded = isExpanded ,
+                                    onDismissRequest = { isExpanded = false }
+                                ) {
+
+                                    list.forEachIndexed{index, text ->
+                                        DropdownMenuItem(
+                                            text = {Text(text = text)},
+                                            onClick = {selectedText = list[index]
+                                                isExpanded = false
+                                            },
+                                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                                        )
+                                    }
+
+                                }
+
+                            }
 
 
                         }
@@ -465,4 +528,3 @@ fun PreviewHomeScreen() {
         navController = navController
     )
 }
-
