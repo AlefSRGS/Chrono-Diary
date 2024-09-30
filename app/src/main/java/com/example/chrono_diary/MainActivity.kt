@@ -9,10 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.chrono_diary.navigation.SetupNavGraph
+import com.example.chrono_diary.screens.authScreen
+import com.example.chrono_diary.screens.cadScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -26,25 +29,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController,"AuthScreen"){
-                        composable("AuthScreen") {
-                            authScreen(
-                                onSignInClick = { user ->
-                                    navController.navigate("UserScreen/${user}")
-                                },
-                                onSignUpClick = {
-                                    navController.navigate("SignUpScreen")
-                                },
-                                navController = navController
-                            )
-                        }
-                        composable("CadScreen") {
-                            cadScreen(
-                                onSignInClick = { },
-                                onSignUpClick = { }
-                            )
-                        }
-                    }
+                    val userViewModel: UserViewModel = viewModel()
+                    SetupNavGraph(navController = navController, userViewModel = userViewModel)
                 }
             }
         }
