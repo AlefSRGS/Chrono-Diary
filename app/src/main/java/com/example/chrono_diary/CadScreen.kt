@@ -1,7 +1,6 @@
 package com.example.chrono_diary
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,20 +13,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import android.app.DatePickerDialog
-import android.os.Bundle
 import android.widget.DatePicker
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import java.util.*
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -99,12 +94,11 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        //data de nascimento
+
         val context = LocalContext.current
         var selectedDate = remember { mutableStateOf("") }
         val calendar = Calendar.getInstance()
 
-        // DatePickerDialog
         val datePickerDialog = DatePickerDialog(
             context,
             R.style.CustomDatePickerDialog,
@@ -247,6 +241,15 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
 
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = { },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF4B7195)),
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier.padding(16.dp).width(200.dp)
+        ) {
+            Text("Cadastrar", color = Color.White)
+        }
     }
 }

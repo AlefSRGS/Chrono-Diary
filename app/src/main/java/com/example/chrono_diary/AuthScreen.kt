@@ -156,6 +156,7 @@ fun authScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                         navController.navigate("cadScreen")
                     }
             )
+
         }
 }
 
