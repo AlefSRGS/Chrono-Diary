@@ -57,6 +57,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
 
+    implementation("org.mindrot:jbcrypt:0.4") //library hash de dados sensiveis
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
