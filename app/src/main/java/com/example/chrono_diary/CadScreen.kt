@@ -14,12 +14,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import android.app.DatePickerDialog
 import android.widget.DatePicker
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
 import java.util.*
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,8 +52,6 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
         )
 
 
-
-        Spacer(modifier = Modifier.height(8.dp))
         OutlinedTextField(
             value = completename,
             onValueChange = { completename = it },
@@ -68,6 +69,8 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                 focusedLabelColor = Color(0xFF6899EB)
             )
         )
+        Spacer(modifier = Modifier.height(8.dp))
+
 
         OutlinedTextField(
             value = username,
@@ -91,12 +94,11 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        //data de nascimento
+
         val context = LocalContext.current
         var selectedDate = remember { mutableStateOf("") }
         val calendar = Calendar.getInstance()
 
-        // DatePickerDialog
         val datePickerDialog = DatePickerDialog(
             context,
             R.style.CustomDatePickerDialog,
@@ -239,13 +241,15 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
 
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
-    }
-}
+        Spacer(modifier = Modifier.height(16.dp))
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewCadScreen() {
-    val navController = rememberNavController()
-    cadScreen(onSignInClick = {}, onSignUpClick = {})
+        Button(
+            onClick = { },
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF4B7195)),
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier.padding(16.dp).width(200.dp)
+        ) {
+            Text("Cadastrar", color = Color.White)
+        }
+    }
 }
