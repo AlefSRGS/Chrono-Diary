@@ -4,7 +4,6 @@ import java.time.LocalDate
 
 data class UserTask (
     var taskName: String,
-    var description: String,
     var dueDate: LocalDate,
     var tag: String,
     var done: Boolean
