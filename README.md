@@ -1,1 +1,1 @@
-# Chrono-Diary
+# ChronoDiary

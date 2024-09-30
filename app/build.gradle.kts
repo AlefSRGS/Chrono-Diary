@@ -51,11 +51,13 @@ android {
 
 dependencies {
     implementation("androidx.compose.material:material-icons-extended")
+    implementation(libs.androidx.ui.test.android)
 
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
 
+    implementation("org.mindrot:jbcrypt:0.4") //library hash de dados sensiveis
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -72,4 +74,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.material.v100)
+    implementation(libs.material)
 }
