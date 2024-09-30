@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import com.example.loginapp.User
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +34,7 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember{ mutableStateOf("") }
     var confirmpassword by remember { mutableStateOf("") }
-
+    var selectedDate by remember { mutableStateOf("") }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -112,28 +113,28 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
 
 
 
-            OutlinedTextField(
-                value = selectedDate.value,
-                onValueChange = { },
-                label = { Text("Data de Nascimento") },
-                readOnly = true,
-                modifier = Modifier
-                    .clickable { datePickerDialog.show() }
-                    .width(320.dp)
-                    .padding(4.dp)
-                    .height(65.dp),
-                placeholder = { Text(text = "Selecione uma data") },
-                shape = RoundedCornerShape(8.dp),
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    containerColor = Color.White,
-                    unfocusedBorderColor = Color(0xFF6899EB),
-                    focusedBorderColor = Color(0xFF6899EB),
-                    unfocusedLabelColor = Color(0xFF4B7195),
-                    focusedLabelColor = Color(0xFF6899EB)
-
-                )
+        OutlinedTextField(
+            value = selectedDate.value,
+            onValueChange = { },
+            label = { Text("Data de Nascimento") },
+            readOnly = true,
+            modifier = Modifier
+                .clickable { datePickerDialog.show() }
+                .width(320.dp)
+                .padding(4.dp)
+                .height(65.dp),
+            placeholder = { Text(text = "Selecione uma data") },
+            shape = RoundedCornerShape(8.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                containerColor = Color.White,
+                unfocusedBorderColor = Color(0xFF6899EB),
+                focusedBorderColor = Color(0xFF6899EB),
+                unfocusedLabelColor = Color(0xFF4B7195),
+                focusedLabelColor = Color(0xFF6899EB)
 
             )
+
+        )
 
 
 
@@ -244,7 +245,23 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { },
+            onClick = {
+                val newUser = User(
+                    completeName = completename,
+                    username = username,
+                    email = email,
+                    password = password,
+                    birthDate = selectedDate
+                )
+                //userList.add(newUser)
+
+                completename = ""
+                username = ""
+                email = ""
+                password = ""
+                confirmpassword = ""
+                selectedDate = ""
+            },
             colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF4B7195)),
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.padding(16.dp).width(200.dp)
