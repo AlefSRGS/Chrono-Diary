@@ -1,4 +1,4 @@
-package com.example.chrono_diary
+package com.example.chrono_diary.screens
 
 import android.app.TimePickerDialog
 import android.widget.DatePicker
@@ -37,7 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import java.util.Calendar
 import android.app.DatePickerDialog
 import android.widget.TimePicker
-
+import com.example.chrono_diary.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)

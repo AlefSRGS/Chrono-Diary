@@ -1,4 +1,4 @@
-package com.example.chrono_diary
+package com.example.chrono_diary.screens
 
 
 
@@ -14,6 +14,7 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import com.example.chrono_diary.R
 import kotlinx.coroutines.delay
 
 @Composable
