@@ -17,6 +17,8 @@ import android.widget.DatePicker
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import java.util.*
 
 
@@ -47,6 +49,8 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
         )
 
 
+
+        Spacer(modifier = Modifier.height(8.dp))
         OutlinedTextField(
             value = completename,
             onValueChange = { completename = it },
@@ -64,8 +68,6 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
                 focusedLabelColor = Color(0xFF6899EB)
             )
         )
-        Spacer(modifier = Modifier.height(8.dp))
-
 
         OutlinedTextField(
             value = username,
@@ -239,4 +241,11 @@ fun cadScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(8.dp))
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewCadScreen() {
+    val navController = rememberNavController()
+    cadScreen(onSignInClick = {}, onSignUpClick = {})
 }

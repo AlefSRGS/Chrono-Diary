@@ -1,8 +1,10 @@
 package com.example.chrono_diary
 
+import android.widget.DatePicker
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.ButtonDefaults
@@ -27,14 +29,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.material3.Icon
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Text
-import androidx.compose.material3.Button
 import androidx.compose.runtime.*
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.material3.*
-
-
+import androidx.compose.ui.platform.LocalContext
+import java.util.Calendar
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -259,8 +258,151 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                     title = {
                         Text(text = "Nova Task")
                     },
-                    text = { // criar uma função com o conteudo de dentro do alert dialog
-                        Text("Este é o conteúdo do alerta.")
+                    text = {
+
+                        Column{
+                            var task_name by remember { mutableStateOf("") }
+
+                            TextField(
+
+                             value = task_name,
+                             onValueChange = { task_name = it },
+                             label  = {
+                                 Text(
+                                     text = "Titulo"
+                                 )
+                             },
+                                modifier = Modifier
+                                    .width(320.dp)
+                                    .padding(4.dp)
+                                    .height(65.dp),
+
+                            )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            Row{
+                                
+                                Icon(painter = painterResource(id = R.drawable.relogio), contentDescription = null )
+                                Spacer(modifier = Modifier.width(8.dp))
+
+                                Text(text = "Todo dia " , modifier=Modifier.padding(16.dp) , fontSize = 25.sp)
+                                var isChecked by remember { mutableStateOf(true) }
+
+
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Switch(
+                                    checked = isChecked,
+                                    onCheckedChange = {isChecked = it },
+
+                                )
+
+                            }
+
+                            Spacer(modifier = Modifier.width(16.dp))
+
+                            Row{
+
+                                //data de nascimento
+                                val context = LocalContext.current
+                                var selectedDate = remember { mutableStateOf("") }
+                                val calendar = Calendar.getInstance()
+
+                                // DatePickerDialog
+                                val datePickerDialog = android.app.DatePickerDialog(
+                                    context,
+                                    R.style.CustomDatePickerDialog,
+                                    { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                                        selectedDate.value = "$dayOfMonth/${month + 1}/$year"
+                                    },
+                                    calendar.get(Calendar.YEAR),
+                                    calendar.get(Calendar.MONTH),
+                                    calendar.get(Calendar.DAY_OF_MONTH)
+                                )
+
+
+
+                                OutlinedTextField(
+                                    value = selectedDate.value,
+                                    onValueChange = { },
+                                    label = { Text("Data de Nascimento") },
+                                    readOnly = true,
+                                    modifier = Modifier
+                                        .clickable { datePickerDialog.show() }
+                                        .width(110.dp)
+                                        .padding(4.dp)
+                                        .height(15.dp),
+                                    placeholder = { Text(text = "Selecione uma data") },
+                                    shape = RoundedCornerShape(8.dp),
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        containerColor = Color.White,
+                                        unfocusedBorderColor = Color(0xFF6899EB),
+                                        focusedBorderColor = Color(0xFF6899EB),
+                                        unfocusedLabelColor = Color(0xFF4B7195),
+                                        focusedLabelColor = Color(0xFF6899EB)
+
+                                    )
+
+                                )
+
+                                Spacer(modifier = Modifier.width(8.dp))
+
+                                Icon(painter = painterResource(id = R.drawable.flecha), contentDescription = null)
+
+                                Spacer(modifier = Modifier.width(8.dp))
+
+                                //data de nascimento
+                                val context_two = LocalContext.current
+                                var selectedDate_two = remember { mutableStateOf("") }
+                                val calendar_two = Calendar.getInstance()
+
+                                // DatePickerDialog
+                                val datePickerDialog_two = android.app.DatePickerDialog(
+                                    context,
+                                    R.style.CustomDatePickerDialog,
+                                    { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                                        selectedDate.value = "$dayOfMonth/${month + 1}/$year"
+                                    },
+                                    calendar.get(Calendar.YEAR),
+                                    calendar.get(Calendar.MONTH),
+                                    calendar.get(Calendar.DAY_OF_MONTH)
+                                )
+
+
+
+                                OutlinedTextField(
+                                    value = selectedDate.value,
+                                    onValueChange = { },
+                                    label = { Text("Data de Nascimento") },
+                                    readOnly = true,
+                                    modifier = Modifier
+                                        .clickable { datePickerDialog_two.show() }
+                                        .width(110.dp)
+                                        .padding(4.dp)
+                                        .height(15.dp),
+                                    placeholder = { Text(text = "Selecione uma data") },
+                                    shape = RoundedCornerShape(8.dp),
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        containerColor = Color.White,
+                                        unfocusedBorderColor = Color(0xFF6899EB),
+                                        focusedBorderColor = Color(0xFF6899EB),
+                                        unfocusedLabelColor = Color(0xFF4B7195),
+                                        focusedLabelColor = Color(0xFF6899EB)
+
+                                    )
+
+                                )
+
+
+
+
+                            }
+
+
+
+
+                        }
+
                     },
 
                     properties = DialogProperties(dismissOnClickOutside = true) // Opcional, fecha ao clicar fora
@@ -270,6 +412,8 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
             }
         }
     }
+
+
 
 
 @Preview(showBackground = true)
