@@ -13,7 +13,11 @@ fun SetupNavGraph(
     navController: NavHostController,
     userViewModel: UserViewModel
 ) {
-    NavHost(navController, startDestination = "AuthScreen") {
+    NavHost(navController, startDestination = "SplashScreen") {
+
+        composable("SplashScreen"){
+            SplashScreen(navController = navController)
+        }
         composable("AuthScreen") {
             AuthScreen(
                 userViewModel = userViewModel,
