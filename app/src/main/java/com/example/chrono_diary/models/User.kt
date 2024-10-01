@@ -1,7 +1,9 @@
 package com.example.chrono_diary.models
 
-import java.time.LocalDate
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class User(
     var username: String,
     val completeName: String,
@@ -9,4 +11,4 @@ data class User(
     var email: String,
     val birthDate: String,
     var taskList: MutableList<UserTask> = mutableListOf()
-)
+): Parcelable
