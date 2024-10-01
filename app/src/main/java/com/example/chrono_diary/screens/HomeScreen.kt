@@ -27,9 +27,6 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.material3.*
@@ -37,12 +34,19 @@ import androidx.compose.ui.platform.LocalContext
 import java.util.Calendar
 import android.app.DatePickerDialog
 import android.widget.TimePicker
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import com.example.chrono_diary.R
+import com.example.chrono_diary.UserViewModel
+import com.example.chrono_diary.models.UserTask
+import com.example.chrono_diary.models.tagsTask
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navController: NavController) {
+fun HomeScreen(username: String, userViewModel: UserViewModel, navController: NavController) {
+
+    val user = userViewModel.getUserByUsername(username)
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -66,7 +70,7 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                         .padding(end = 2.dp)
                 )
                 Text(
-                    text = "Ola , nome do usuario",
+                    text = "Ola , ${user?.completeName}",
                     color = Color.White,
                     fontSize = 23.sp,
 
@@ -249,7 +253,13 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
 
                 }
 
-                //lazyColumn
+                LazyColumn(
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    items(user?.taskList ?: emptyList()) { task ->
+                        TaskCard(userTask = task)
+                    }
+                }
 
             }
 
@@ -273,16 +283,31 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
             }
 
             if(openAlertDialog.value){
+                var newTaskName by remember { mutableStateOf("") }
+                var selectedDate_two = remember { mutableStateOf("") }
+                var newTaskTag by remember {mutableStateOf("")}
 
                 AlertDialog(
                     onDismissRequest = { openAlertDialog.value = false },
                     confirmButton = {
-                        Button(onClick = { openAlertDialog.value = false }, modifier = Modifier.background(Color(0xFF4B7195))) {
+                        Button(
+                            onClick = {
+                                openAlertDialog.value = false
+                                var newTask =
+                                    UserTask(
+                                        newTaskName,
+                                        selectedDate_two.value,
+                                        newTaskTag,
+                                        false
+                                    )
+                                user?.let { userViewModel.addTaskToUser(it, newTask) }
+                                      },
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4B7195))) {
                             Text("Criar")
                         }
                     },
                     dismissButton = {
-                        Button(onClick = { openAlertDialog.value = false } , modifier = Modifier.background(Color(0xFF4B7195))) {
+                        Button(onClick = { openAlertDialog.value = false } ,colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4B7195))) {
                             Text("Cancelar")
                         }
                     },
@@ -292,12 +317,12 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                     text = {
 
                         Column{
-                            var task_name by remember { mutableStateOf("") }
 
-                            TextField(
 
-                                value = task_name,
-                                onValueChange = { task_name = it },
+                            OutlinedTextField(
+
+                                value = newTaskName,
+                                onValueChange = { newTaskName = it },
                                 label  = {
                                     Text(
                                         text = "Titulo"
@@ -308,100 +333,46 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                                     .padding(4.dp)
                                     .height(65.dp),
 
+                                colors = TextFieldDefaults.outlinedTextFieldColors(
+                                    containerColor = Color.White,
+                                    unfocusedBorderColor = Color(0xFF6899EB),
+                                    focusedBorderColor = Color(0xFF6899EB),
+                                    unfocusedLabelColor = Color(0xFF4B7195),
+                                    focusedLabelColor = Color(0xFF6899EB)
+
                                 )
+
+                            )
 
                             Spacer(modifier = Modifier.height(8.dp))
 
+                            // Row{
+                            //
+                            //                                Icon(painter = painterResource(id = R.drawable.relogio), contentDescription = null )
+                            //                                Spacer(modifier = Modifier.width(8.dp))
+                            //
+                            //                                Text(text = "Todo dia " , modifier=Modifier.padding(16.dp) , fontSize = 25.sp)
+                            //                                var isChecked by remember { mutableStateOf(true) }
+                            //
+                            //
+                            //                                Spacer(modifier = Modifier.width(8.dp))
+                            //                                Switch(
+                            //                                    checked = isChecked,
+                            //                                    onCheckedChange = {isChecked = it },
+                            //
+                            //                                )
+                            //
+                            //                            }
+
+                            //Spacer(modifier = Modifier.width(16.dp))
+
                             Row{
 
-                                Icon(painter = painterResource(id = R.drawable.relogio), contentDescription = null )
-                                Spacer(modifier = Modifier.width(8.dp))
 
-                                Text(text = "Todo dia " , modifier=Modifier.padding(16.dp) , fontSize = 25.sp)
-                                var isChecked by remember { mutableStateOf(true) }
-
-
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Switch(
-                                    checked = isChecked,
-                                    onCheckedChange = {isChecked = it },
-
-                                    )
-
-                            }
-
-                            Spacer(modifier = Modifier.width(16.dp))
-
-                            Row{
-
-                                //data de nascimento
-                                val context = LocalContext.current
-                                var selectedDate = remember { mutableStateOf("") }
-                                val calendar = Calendar.getInstance()
-
-                                val initialYear = calendar.get(Calendar.YEAR)
-                                val initialMonth = calendar.get(Calendar.MONTH)
-                                val initialDay = calendar.get(Calendar.DAY_OF_MONTH)
-                                val initialHour = calendar.get(Calendar.HOUR_OF_DAY)
-                                val initialMinute = calendar.get(Calendar.MINUTE)
-
-                                // DatePickerDialog
-                                val datePickerDialog = DatePickerDialog(
-                                    context,
-                                    R.style.CustomDatePickerDialog,
-                                    { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-
-
-                                        val timePickerDialog = TimePickerDialog(
-                                            context,
-                                            { _: TimePicker, hourOfDay: Int, minute: Int ->
-
-                                                var selectedDateTime =
-                                                    "$dayOfMonth/${month + 1}/$year $hourOfDay:$minute"
-                                            },
-                                            initialHour, initialMinute, true
-                                        )
-
-                                        timePickerDialog.show()
-
-                                    },
-                                    initialYear, initialMonth, initialDay
-                                )
-
-
-
-                                OutlinedTextField(
-                                    value = selectedDate.value,
-                                    onValueChange = { },
-                                    label = { Text("Data de Nascimento") },
-                                    readOnly = true,
-                                    modifier = Modifier
-                                        .clickable { datePickerDialog.show() }
-                                        .width(110.dp)
-                                        .padding(4.dp)
-                                        .height(15.dp),
-                                    placeholder = { Text(text = "Selecione uma data") },
-                                    shape = RoundedCornerShape(8.dp),
-                                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                                        containerColor = Color.White,
-                                        unfocusedBorderColor = Color(0xFF6899EB),
-                                        focusedBorderColor = Color(0xFF6899EB),
-                                        unfocusedLabelColor = Color(0xFF4B7195),
-                                        focusedLabelColor = Color(0xFF6899EB)
-
-                                    )
-
-                                )
-
-                                Spacer(modifier = Modifier.width(8.dp))
-
-                                Icon(painter = painterResource(id = R.drawable.flecha), contentDescription = null)
-
-                                Spacer(modifier = Modifier.width(8.dp))
 
                                 //data de nascimento
                                 val context_two = LocalContext.current
-                                var selectedDate_two = remember { mutableStateOf("") }
+
                                 val calendar_two = Calendar.getInstance()
 
                                 // DatePickerDialog
@@ -420,10 +391,10 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
 
 
                                         val timePickerDialog = TimePickerDialog(
-                                            context,
+                                            context_two,
                                             { _: TimePicker, hourOfDay: Int, minute: Int ->
 
-                                                var selectedDateTime_two =
+                                                selectedDate_two.value =
                                                     "$dayOfMonth/${month + 1}/$year $hourOfDay:$minute"
                                             },
                                             initialHour_two, initialMinute_two, true
@@ -440,15 +411,14 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                                 OutlinedTextField(
                                     value = selectedDate_two.value,
                                     onValueChange = { },
-                                    label = { Text("Data de Nascimento") },
+                                    label = { Text("Data de conclusão") },
                                     readOnly = true,
                                     modifier = Modifier
                                         .clickable { datePickerDialog_two.show() }
-                                        .width(110.dp)
+                                        .width(320.dp)
                                         .padding(4.dp)
-                                        .height(15.dp),
+                                        .height(65.dp),
                                     placeholder = { Text(text = "Selecione uma data") },
-                                    shape = RoundedCornerShape(8.dp),
                                     colors = TextFieldDefaults.outlinedTextFieldColors(
                                         containerColor = Color.White,
                                         unfocusedBorderColor = Color(0xFF6899EB),
@@ -457,15 +427,26 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                                         focusedLabelColor = Color(0xFF6899EB)
 
                                     )
+                                    //   shape = RoundedCornerShape(8.dp),
+                                    //                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                    //                                        containerColor = Color.White,
+                                    //                                        unfocusedBorderColor = Color(0xFF6899EB),
+                                    //                                        focusedBorderColor = Color(0xFF6899EB),
+                                    //                                        unfocusedLabelColor = Color(0xFF4B7195),
+                                    //                                        focusedLabelColor = Color(0xFF6899EB)
+                                    //
+                                    //                                    )
 
                                 )
+
+                                Spacer(modifier = Modifier.height(24.dp))
 
 
 
 
                             }
-                            val list = listOf("Trabalho","Pessoal","Faculdade","Qualquer","Saúde")
-                            var selectedText by remember {mutableStateOf(list[0])}
+                            val list: List<String> = (tagsTask.entries.map { it.name })
+
                             var isExpanded by remember{ mutableStateOf(false) }
 
                             ExposedDropdownMenuBox(
@@ -474,11 +455,20 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                             ) {
 
                                 OutlinedTextField(
-                                    value =selectedText ,
-                                    label = {Text(text = ("Catergoria"))},
-                                    onValueChange = {},
+                                    value = newTaskTag ,
+                                    label = {Text(text = ("Categoria"))},
+                                    onValueChange = {newTaskTag = it},
                                     readOnly = true,
-                                    modifier = Modifier.menuAnchor(),
+                                    modifier = Modifier.menuAnchor().width(320.dp)
+                                        .padding(4.dp)
+                                        .height(65.dp),
+                                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                                        containerColor = Color.White,
+                                        unfocusedBorderColor = Color(0xFF6899EB),
+                                        focusedBorderColor = Color(0xFF6899EB),
+                                        unfocusedLabelColor = Color(0xFF4B7195),
+                                        focusedLabelColor = Color(0xFF6899EB)
+                                    ),
                                     trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(
                                         expanded = isExpanded
                                     )})
@@ -491,7 +481,7 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
                                     list.forEachIndexed{index, text ->
                                         DropdownMenuItem(
                                             text = {Text(text = text)},
-                                            onClick = {selectedText = list[index]
+                                            onClick = {newTaskTag = list[index]
                                                 isExpanded = false
                                             },
                                             contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
@@ -515,16 +505,3 @@ fun HomeScreen(onSignInClick: (String) -> Unit, onSignUpClick: () -> Unit, navCo
     }
 }
 
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewHomeScreen() {
-    val navController = rememberNavController()
-    HomeScreen(
-        onSignInClick = { },
-        onSignUpClick = {  },
-        navController = navController
-    )
-}

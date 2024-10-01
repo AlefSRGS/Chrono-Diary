@@ -29,7 +29,7 @@ import com.example.chrono_diary.models.User
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun cadScreen(userViewModel: UserViewModel, onNavigateToLogin: () -> Unit) {
+fun CadScreen(userViewModel: UserViewModel, onNavigateToLogin: () -> Unit) {
     var completename by remember { mutableStateOf("") }
     var username by remember{ mutableStateOf("") }
     var email by remember { mutableStateOf("") }

@@ -27,7 +27,7 @@ import com.example.chrono_diary.models.User
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun authScreen(userViewModel: UserViewModel, onNavigateToCad: () -> Unit) {
+fun AuthScreen(userViewModel: UserViewModel, onNavigateToCad: () -> Unit, navController: NavController){
             var username by remember{ mutableStateOf("") }
             var password by remember{ mutableStateOf("") }
 
@@ -142,10 +142,7 @@ fun authScreen(userViewModel: UserViewModel, onNavigateToCad: () -> Unit) {
                     if(username != "" || password != ""){
                         val userFounded = userViewModel.testMatchUser(username, password)
                         if(userFounded != null){
-                            //ir para pagina home
-                            println("Login deu certo")
-                            println(userFounded.username)
-                            println(userFounded.birthDate)
+                            navController.navigate("HomeScreen/${userFounded.username}")
                         }
                         //pop-up username ou password incorreto
                     }

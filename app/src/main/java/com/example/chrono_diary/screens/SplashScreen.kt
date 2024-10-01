@@ -18,7 +18,7 @@ import com.example.chrono_diary.R
 import kotlinx.coroutines.delay
 
 @Composable
-fun SlapScreen(navController: NavController) {
+fun SplashScreen(navController: NavController) {
     var isFirstImageVisible by remember { mutableStateOf(true) }
 
     // Transição de fade
@@ -38,7 +38,7 @@ fun SlapScreen(navController: NavController) {
         delay(1500)
 
         navController.navigate("AuthScreen") {
-            popUpTo("SlapScreen") { inclusive = true }
+            popUpTo("SplashScreen") { inclusive = true }
         }
     }
 

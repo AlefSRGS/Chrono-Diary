@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.chrono_diary.screens.cadScreen
+import com.example.chrono_diary.screens.HomeScreen
 import com.example.chrono_diary.screens.*
 import com.example.chrono_diary.UserViewModel
 
@@ -15,18 +15,26 @@ fun SetupNavGraph(
 ) {
     NavHost(navController, startDestination = "AuthScreen") {
         composable("AuthScreen") {
-            authScreen(
+            AuthScreen(
                 userViewModel = userViewModel,
-                onNavigateToCad = { navController.navigate("CadScreen") }
+                onNavigateToCad = { navController.navigate("CadScreen") },
+                navController = navController
             )
         }
         composable("CadScreen") {
-            cadScreen(
+            CadScreen(
                 userViewModel = userViewModel,
                 onNavigateToLogin = { navController.navigate("AuthScreen") }
             )
         }
-        //navigate pra tela home
+        composable("HomeScreen/{username}") { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("username") ?: ""
+            HomeScreen(
+                username = username,
+                userViewModel = userViewModel,
+                navController = navController
+            )
+        }
     }
 }
 

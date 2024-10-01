@@ -9,17 +9,21 @@ class UserViewModel : ViewModel() {
 
     fun addUser(user: User) {
         user.password = HashUtils.hashSensitiveData(user.password)
-        user.username = HashUtils.hashSensitiveData(user.username)
         users.add(user)
     }
     fun testMatchUser(inputUserName: String, inputPassword: String): User? {
         users.forEach{ user ->
-            if(HashUtils.checkSensitiveData(inputUserName, user.username) && HashUtils.checkSensitiveData(inputPassword, user.password)){
+            if(inputUserName == user.username && HashUtils.checkSensitiveData(inputPassword, user.password)){
                return user
             }
         }
         return null;
     }
+
+    fun getUserByUsername(username: String): User? {
+        return users.find { it.username == username }
+    }
+
     fun addTaskToUser(currentUser: User, task: UserTask) {
         currentUser.taskList.add(task)
     }
